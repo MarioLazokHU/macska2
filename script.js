@@ -1,12 +1,25 @@
-// Get the button element
-let button = document.querySelector('.pink');
+document.addEventListener('DOMContentLoaded', function() {
+    
+    let textInput = document.getElementById('textInput');
+    let button = document.querySelector('.pink');
 
-// Add a click event listener to the button
-button.addEventListener('click', function() {
-    // Change the text content based on the current text
-    if (button.textContent === 'Macska szar') {
-        button.textContent = 'Kutya szar';
-    } else {
-        button.textContent = 'Macska szar';
-    }
+   
+    button.addEventListener('click', function() {
+        
+        let inputValue = textInput.value.trim(); 
+
+        if (inputValue === '') {
+            
+            alert('Kérlek, írj valamit a beviteli mezőbe!');
+        } else {
+            
+            let container = document.querySelector('.container');
+            let newParagraph = document.createElement('p');
+            newParagraph.textContent = inputValue;
+            container.appendChild(newParagraph);
+
+            
+            textInput.value = '';
+        }
+    });
 });
