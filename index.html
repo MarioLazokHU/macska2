@@ -3,71 +3,85 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nasa Picture</title>
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="icon" type="image/x-icon" href="./n.jpg" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
-   <div id="root">
-    <h1>Nása képek
-      <button id="button">gomb</button>
-    </h1>
-    <header id="head">
-      <label for="datePicker">Válasz Dátumot:</label>
-      <input type="date" id="datePicker" name="datePicker">
-      <div class="center-box"></header>
-      
-    <main id="dataContainer">
-      
+    <header>
+        <h1>Wheather & Pictures</h1>
+      <nav>
+        <input id="city" type="text" />
+        <button class="search">Keresés</button>
+      </nav>
+    </header>
+    <main>
+      <img src="" alt="">
+      <div class="card"></div>
     </main>
-    <footer>
-      <a href="https://www.google.com" target="_blank">Google</a>
-    </footer>
-   </div>
   </body>
 </html>
-  
+
 <style>
-body {
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgb(170, 170, 170);
+  }
+
+  p{
+    font-size: 100px;
+  }
+
+  img{
+    position: fixed;
+    z-index: -1;
+    width: 100%;
+  }
+  nav{
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-    background-color: #fc0202;
-    color: #fff;
-}
+    gap: 20px;
+  }
 
-main {
+  header{
     display: flex;
-    flex-direction: column;
-    width: fit-content;
-    height: fit-content;
-    margin: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-    background-color: #3cff00;
-    color: #000000;
-}
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    background-color: rgba(0, 0, 0, 0.147);
+  }
 
-footer {
+  input{
+    height: 30px;
+    width: 400px;
+  }
+
+  button{
+    background-color: rgb(35, 32, 41);
+    color: white;
+    padding: 10px;
+    border: none;
+  }
+
+  main {
     width: 100%;
-    box-sizing: border-box;
-    background-color: #3cff00;
-    text-align: center;
-    padding: 10px;
+    height: 100vh;
     display: flex;
-    justify-content: center; /* Középre igazítás */
-}
+    justify-content: center;
+    align-items: center;
+  }
 
-a {
-    text-decoration: none;
-    color: #080000;
-}
-
-header {
+  .card {
     display: flex;
-}
+    align-items: center;
+    justify-content: center;
+    width: 1000px;
+    height: 800px;
+    background-color: rgba(118, 118, 118, 0.508);
+    box-shadow: 0px 0px 15px black;
+    border-radius: 10px;
+  }
+</style>

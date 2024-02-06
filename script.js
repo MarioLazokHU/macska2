@@ -1,47 +1,37 @@
-document.addEventListener('DOMContentLoaded', function() {
-    let button = document.getElementById('button');
-    const dataContainer = document.getElementById('dataContainer');
-    const datePicker = document.getElementById('datePicker');
+const API_KEY = 'b643e5fc87a646d3bba151759240602'
+const BASE_URL = 'http://api.weatherapi.com/v1/current.json'
 
+const PEXEL_KEY = '7g3k93KknvgVzZvenNgso16yiZtR0xlO4IZZEW0II3Ljh6oskXgGD0Uo'
+const PEXEL_URL = 'https://api.pexels.com/v1/search'
+
+const city = document.querySelector('#city')
+const searchBtn = document.querySelector('.search')
+
+const card = document.querySelector('.card')
+
+async function getWeatherAndPicture(){
+    card.innerHTML = ''
+
+    const reqW = await fetch(`${BASE_URL}?key=${API_KEY}&q=${city.value}`)
+    const resW = await reqW.json()
     
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0');
-    let yyyy = today.getFullYear();
-    today = yyyy + '-' + mm + '-' + dd;
-    datePicker.value = today;
+    const temp = document.createElement('p')
+    temp.innerHTML = resW.current.temp_c+' c°'
 
-    
-    function fetchData() {
-        let date = datePicker.value;
+    card.append(temp)
 
-        if (date) {
-            var apiUrl = `https://api.nasa.gov/planetary/apod?api_key=59IQA9hsqzi09UnfMkxfHkkbKEA8OQCMg0QxgsNs&date=${date}`;
-            fetch(apiUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('A lekérdezés sikertelen.');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    dataContainer.innerHTML = `
-                        <h2>${data.title}</h2>
-                        <img src="${data.url}" alt="${data.title}" style="max-width: 100%;">
-                        <p>${data.explanation}</p>
-                    `;
-                })
-                .catch(error => {
-                    dataContainer.innerHTML = `Hiba: ${error.message}`;
-                });
-        } else {
-            dataContainer.innerHTML = 'Válasszon ki egy dátumot.';
+    const reqP = await fetch(`https://api.pexels.com/v1/search?query=${city.value}`, {
+        headers:{
+            "Authorization":PEXEL_KEY
         }
-    }
+    })
+    const resP = await reqP.json()
+
+    const bgImage = document.querySelector('img')
+   
+    bgImage.src = resP.photos[0].src.original
 
     
-    fetchData();
+}
 
-    
-    button.addEventListener('click', fetchData);
-});
+searchBtn.addEventListener('click', getWeatherAndPicture)
